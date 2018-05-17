@@ -130,6 +130,12 @@ void Gazebo::recv_fdm(const struct sitl_input &input)
     }
     last_timestamp = pkt.timestamp;
 
+//APPENDED MANUALLY
+// get GPS position [degrees]->[degrees * 10^7], [m]->[cm]
+location.lat = pkt.position_latlonalt[0] * 1.0e7;
+location.lng = pkt.position_latlonalt[1] * 1.0e7;
+location.alt = pkt.position_latlonalt[2] *1.0e2;
+
 }
 
 /*
@@ -162,7 +168,7 @@ void Gazebo::update(const struct sitl_input &input)
 {
     send_servos(input);
     recv_fdm(input);
-    update_position();
+    //update_position(); COMMENTED MANUALLY
 
     time_advance();
     // update magnetic field

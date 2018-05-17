@@ -60,6 +60,10 @@ private:
       double imu_orientation_quat[4];
       double velocity_xyz[3];
       double position_xyz[3];
+//APPENDED MANUALLY
+double position_latlonalt[3];
+double sonar_down;
+double sonar_front;
     };
 
     void recv_fdm(const struct sitl_input &input);
@@ -72,6 +76,7 @@ private:
     const char *_gazebo_address = "127.0.0.1";
     int _gazebo_port = 9002;
     static const uint64_t GAZEBO_TIMEOUT_US = 5000000;
+
 };
 
 }  // namespace SITL
